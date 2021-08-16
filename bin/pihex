@@ -1,13 +1,26 @@
 #!/usr/bin/env python3
 
-import sys
 import re
+import argparse
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument('input', nargs='+')
+parser.add_argument('--hex', dest='hex', action='store_true')
+args = parser.parse_args()
 
 if __name__ == '__main__':
-    for v in re.split('[.\s:,-/]', ' '.join(sys.argv[1:])):
+
+    _base   = 10
+    _format = '{:02X}'
+
+    if args.hex:
+        _base   = 16
+        _format = '{}'
+
+    for v in re.split('[.\s:,-/]', ' '.join(args.input)):
         try:
-            print('{:02X}'.format(int(v)), end=' ')
+            print(_format.format(int(v, _base)), end=' ')
         except ValueError:
             print(v, end=' ')
     print()
