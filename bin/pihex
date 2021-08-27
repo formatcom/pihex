@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import re
 import argparse
 
@@ -18,12 +19,12 @@ if __name__ == '__main__':
     if args.hbin:
         print(format(int(args.hbin, 16),
                             '0{}b'.format(int(args.input[0]))))
-        exit
+        sys.exit(0)
 
     if args.ubin:
         print(format(int(args.ubin),
                             '0{}b'.format(int(args.input[0]))))
-        exit
+        sys.exit(0)
 
 
     _base   = 10
