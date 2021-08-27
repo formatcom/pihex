@@ -7,9 +7,22 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('input', nargs='+')
 parser.add_argument('--hex', dest='hex', action='store_true')
+parser.add_argument('--hex-bin',  dest='hbin', nargs='?')
+parser.add_argument('--uint-bin', dest='ubin', nargs='?')
 args = parser.parse_args()
 
 if __name__ == '__main__':
+
+    if args.hbin:
+        print(format(int(args.hbin, 16),
+                            '0{}b'.format(int(args.input[0]))))
+        exit
+
+    if args.ubin:
+        print(format(int(args.ubin),
+                            '0{}b'.format(int(args.input[0]))))
+        exit
+
 
     _base   = 10
     _format = '{:02X}'
